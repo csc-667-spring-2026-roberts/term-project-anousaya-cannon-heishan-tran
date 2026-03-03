@@ -6,9 +6,9 @@ CSC 667 Term Project — Spring 2026
 
 | Name | GitHub | Email |
 |------|--------|-------|
-| Leonardo Tran | Leonardo0215 | ltran41@sfsu.edu |
-| Jason Anousaya | anousayajason | janousaya@sfsu.edu |
-| G Cannon | gthealien | gcannon@sfsu.edu |
+| Leonardo Tran | @Leonardo0215 | ltran41@sfsu.edu |
+| Jason Anousaya | @anousayajason | janousaya@sfsu.edu |
+| G Cannon | @gthealien | gcannon@sfsu.edu |
 | Member 4 | @username | email@sfsu.edu |
 
 ## Setup
