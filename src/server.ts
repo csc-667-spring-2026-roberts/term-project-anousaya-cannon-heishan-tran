@@ -3,6 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 import homeRoutes from "./routes/home.js";
+import testRoutes from "./routes/test.js";
 import loggingMiddleware from './middleware/logging.js';
 
 const app = express();
@@ -18,6 +19,7 @@ app.use(express.static(path.join(__dirname, "..", "public")));
 app.use(loggingMiddleware);
 
 app.use("/", homeRoutes);
+app.use("/test", testRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server started on port ${String(PORT)} at ${new Date().toLocaleTimeString()}`);
