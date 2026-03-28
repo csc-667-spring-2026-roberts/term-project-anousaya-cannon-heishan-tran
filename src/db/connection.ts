@@ -5,7 +5,7 @@ dotenv.config();
 
 const connectionString = process.env.DATABASE_URL;
 if (connectionString === undefined) {
-    throw "Connection string undefined";
+  throw new Error("Connection string undefined");
 }
 
 const pgp = pgPromise();
