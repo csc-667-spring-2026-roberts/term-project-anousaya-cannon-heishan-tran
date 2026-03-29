@@ -15,22 +15,26 @@ function gravatarUrl(email: string): string {
   return `https://www.gravatar.com/avatar/${hash}?d=identicon`;
 }
 
+router.get("/register", (_request, response) => {
+  response.render("auth/register");
+});
+
 router.post("/register", async (request: TypedRequestBody<UserLoginRequestBody>, response) => {
   const { email, password } = request.body;
 
   if (!email || !password) {
-    response.status(400).json({ error: "Email and password required" });
+    response.render("auth/register", { error: "Email and password required" });
     return;
   }
 
   if (password.length < 8) {
-    response.status(400).json({ error: "Password must be at least 8 characters" });
+    response.render("auth/register", { error: "Password must be at least 8 characters" });
     return;
   }
 
   try {
     if (await Users.existing(email)) {
-      response.status(409).json({ error: "Email is already registered" });
+      response.render("auth/register", { error: "Email is already registered" });
       return;
     }
 
@@ -40,21 +44,22 @@ router.post("/register", async (request: TypedRequestBody<UserLoginRequestBody>,
     const user = await Users.create(email, passwordHash, avatar);
 
     request.session.user = user;
-
-    response.status(201).json({
-      ...user,
-    });
+    response.redirect("/lobby");
   } catch (error) {
     console.error("Registration error:", error);
-    response.status(500).json({ error: "Registration failed" });
+    response.render("auth/register", { error: "Registration failed" });
   }
+});
+
+router.get("/login", (_request, response) => {
+  response.render("auth/login");
 });
 
 router.post("/login", async (request: TypedRequestBody<UserLoginRequestBody>, response) => {
   const { email, password } = request.body;
 
   if (!email || !password) {
-    response.status(400).json({ error: "Email and password required" });
+    response.render("auth/login", { error: "Email and password required" });
     return;
   }
 
@@ -74,11 +79,10 @@ router.post("/login", async (request: TypedRequestBody<UserLoginRequestBody>, re
     };
 
     request.session.user = user;
-
-    response.json(user);
+    response.redirect("/lobby");
   } catch (error) {
     console.error("Login error:", error);
-    response.status(500).json({ error: "Invalid email or password" });
+    response.render("auth/login", { error: "Invalid email or password" });
   }
 });
 
@@ -86,12 +90,10 @@ router.post("/logout", (request, response) => {
   request.session.destroy((error) => {
     if (error) {
       console.error("Logout error:", error);
-      response.status(500).json({ error: "Logout failed" });
-      return;
     }
 
     response.clearCookie("connect.sid");
-    response.json({ message: "Logged out" });
+    response.redirect("/auth/login");
   });
 });
 
