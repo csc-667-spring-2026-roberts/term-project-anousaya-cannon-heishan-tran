@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        <%= typeof title !== "undefined" ? title : "Jrob's game" %> 
+        <%= typeof title !== "undefined" ? title : "Monopoly" %> 
     </title>
     <link rel="stylesheet" href="/css/home.css">
+    <script src="/js/lobby.js" defer></script>
 </head>
 
 <body>
@@ -31,6 +32,23 @@
             </div>
         <% } %>
             <h2>Lobby</h2>
+        <section>
+            <h3>Games</h3>
+            <button id="create_game">Create Game</button>
+            <div id="games_list">
+                <p>Loading...</p>
+            </div>
+
+            <template id= "game_card_template">
+                <div class="game-card">
+                    <span data-game-id></span>
+                    <span data-creator></span>
+                    <span data-player-count></span>
+                    <span data-status></span>
+                </div>
+            </template>
+        </section>
+        
     </main>
 
 </body>
