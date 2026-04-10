@@ -36,8 +36,6 @@ async function loadGames(): Promise<void> {
     return;
   }
 
-  gamesList.innerHTML = "";
-
   if (games.length === 0) {
     gamesList.innerHTML = "<p>No games created yet. Create one!</p>";
     return;
