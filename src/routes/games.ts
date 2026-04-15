@@ -2,11 +2,10 @@ import { Router } from "express";
 
 const router = Router();
 
-router.get("/:id", async (request, response) => {
-    const { id } = request.params;
-    
-    response.render("game", { gameId: id });
-});
+router.get("/:id", (request, response) => {
+  const { id } = request.params;
 
+  response.render("game", { gameId: id });
+});
 
 export default router;
