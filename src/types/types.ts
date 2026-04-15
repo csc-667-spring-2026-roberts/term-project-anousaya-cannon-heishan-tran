@@ -39,3 +39,7 @@ export interface GameListItem {
   creator_email: string;
   player_count: number;
 }
+
+export enum EventTypes {
+  "games_updated"
+}

@@ -8,7 +8,6 @@
         <%= typeof title !== "undefined" ? title : "Monopoly" %> 
     </title>
     <link rel="stylesheet" href="/css/home.css">
-    <script src="/js/lobby.js" defer></script>
 </head>
 
 <body>
@@ -31,30 +30,11 @@
                 <%= error %>
             </div>
         <% } %>
-            <h2>Lobby</h2>
+            <h2>Game <%= gameId %>
+            </h2>
 
-        <section>
-            <h3>Games</h3>
-            <button id="create_game">Create Game</button>
-            <div id="games_list">
-                <p>Loading...</p>
-            </div>
-
-            <template id= "game_card_template">
-                <div class="game-card">
-                    <span data-game-id></span>
-                    <span data-creator></span>
-                    <span data-player-count></span>
-                    <span data-status></span>
-                    <form method="post">
-                        <button>Join</button>
-                    </form>
-                </div>
-            </template>
-        </section>
-        
+            <p>This is the game page</p>
     </main>
-
 </body>
 
 </html>

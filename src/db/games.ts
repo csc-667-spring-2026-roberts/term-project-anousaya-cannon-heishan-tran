@@ -26,4 +26,8 @@ const list = async (): Promise<GameListItem[]> =>
      ORDER BY g.created_at DESC`,
   );
 
-export default { create, list };
+const join = async(gameId: number, userId: number): Promise<void> => {
+  await db.none("INSERT INTO game_users (game_id, user_id) VALUES ($1, $2) ON CONFLICT DO NOTHING", [gameId, userId]);
+}
+
+export default { create, list, join };
